@@ -34,7 +34,12 @@ public class ScanKitUtilities {
                 types.add(SCAN_TYPES[i]);
             }
         }
-        return types.stream().mapToInt(Integer::intValue).toArray();
+        // 去掉 stream 操作，使用普通方式转换为 int 数组
+        int[] result = new int[types.size()];
+        for (int i = 0; i < types.size(); i++) {
+            result[i] = types.get(i);
+        }
+        return result;
     }
 
     public static int getTypeFromFlags(int flags){
